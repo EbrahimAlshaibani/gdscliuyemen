@@ -21,7 +21,7 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required|max:50|min:3',
             'major' => 'required',
-            'uni_id' => 'required|unique:students',
+            'uni_id' => 'required|unique:students|numeric',
         ],[
             'uni_id.required' => "please enter a unique university id"
         ]);
@@ -39,7 +39,7 @@ class StudentController extends Controller
     public function update(Request $request,Student $student)
     {
         $rules = [
-            'name' => 'required|max:50|min:3',
+            'name' => 'max:50|min:3|required',
             'major' => 'required',
             'uni_id' => 'required',
         ];

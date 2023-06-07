@@ -12,7 +12,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teachers = Teacher::paginate();
+        return view('teachers.index')->with("teachers",$teachers);
     }
 
     /**
@@ -20,7 +21,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('teachers.create');
     }
 
     /**
@@ -28,7 +29,19 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:50|min:3',
+            'salary' => 'required|numeric',
+            'emp_id' => 'required|unique:teachers|numeric',
+        ],[
+            'emp_id.required' => "please enter a unique university id"
+        ]);
+        Teacher::create([
+            "name"=>$request->name,
+            "salary"=>$request->salary,
+            "emp_id"=>$request->emp_id
+        ]);
+        return redirect()->route('teachers.index');
     }
 
     /**
@@ -36,7 +49,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return view('teachers.show',compact('teacher'));
     }
 
     /**
@@ -44,7 +57,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('teachers.edit')->with("teacher",$teacher);
     }
 
     /**
@@ -52,7 +65,18 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:50|min:3',
+            'salary' => 'required|numeric',
+            'emp_id' => 'required|numeric',
+        ],[
+            'emp_id.required' => "please enter a unique university id"
+        ]);
+        $teacher->name = $request->name;
+        $teacher->salary = $request->salary;
+        $teacher->emp_id = $request->emp_id;
+        $teacher->update();
+        return redirect()->route('teachers.index');
     }
 
     /**

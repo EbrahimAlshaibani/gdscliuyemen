@@ -3,6 +3,7 @@
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,7 @@ Route::post('/students/{student}/update',[StudentController::class,'update'])->n
 Route::get('/student/{id}/show',[StudentController::class,'show'])->name('students.show');
 Route::get('/student/{id}/delete',[StudentController::class,'destroy'])->name('students.delete');
 
-Route::resource('teacher', TeacherController::class);
+Route::resource('teachers', TeacherController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

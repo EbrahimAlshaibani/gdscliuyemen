@@ -1,7 +1,7 @@
 @extends('layouts.master')
    @section('content')
    <div class="container mt-4">
-    <a href="{{route('students.create')}}" class="btn btn-primary">Create New</a>
+    <a href="{{route('students.create')}}" class="getstarted">Create New</a>
     <table class="table">
         <thead>
           <tr>

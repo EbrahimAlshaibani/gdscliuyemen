@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name",100);
             $table->bigInteger("uni_id")->unsigned();
-            $table->string("majoir")->nullable();
+            $table->string("major")->nullable();
             $table->timestamps();
         });
     }

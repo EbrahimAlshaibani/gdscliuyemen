@@ -27,7 +27,7 @@ class StudentController extends Controller
         ]);
         Student::create([
             "name"=>$request->name,
-            "majoir"=>$request->major,
+            "major"=>$request->major,
             "uni_id"=>$request->uni_id
         ]);
         return redirect()->route('students');
@@ -48,7 +48,7 @@ class StudentController extends Controller
         ];
         $request->validate($rules,$messges);
         $student->name = $request->name; 
-        $student->majoir = $request->major; 
+        $student->major = $request->major; 
         $student->uni_id = $request->uni_id; 
         $student->update();
         return redirect()->route('students');

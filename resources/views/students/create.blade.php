@@ -13,7 +13,13 @@
               </div>
               <div class="col-md-4">
                 <label for="exampleFormControlInput1" class="form-label">Major</label>
-                <input type="text" class="form-control @error('major') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Student Major" name="major" value="{{old('major')}}" required>
+                <select name="major" class="form-control @error('major') is-invalid @enderror" name="major" required>
+                  <option value="">---</option>
+                  @foreach ($majors as $major)
+                   <option value="{{$major->id}}" {{ $major->id==old('major')?"selected":"" }} >{{$major->name}}</option>
+                  @endforeach
+                </select>
+                {{-- <input type="text" class="form-control @error('major') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Student Major" name="major" value="{{old('major')}}" required> --}}
                 <span class='text-danger'>@error('major')
                     {{$message}}
                 @enderror</span>

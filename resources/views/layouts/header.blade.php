@@ -3,7 +3,7 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <h1><a href="index.html">Vesperr</a></h1>
+        <h1><a href="{{route('home')}}">GDSC</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -14,7 +14,10 @@
           @guest
           @else
           <li><a class="nav-link scrollto" href="{{route('students')}}">Students</a></li>
+          <li><a class="nav-link scrollto" href="{{route('majors.index')}}">Majors</a></li>
+          <li><a class="nav-link scrollto" href="{{route('courses.index')}}">Courses</a></li>
           <li><a class="nav-link scrollto" href="{{route('teachers.index')}}">Teachers</a></li>
+          <li><a class="nav-link scrollto" href="{{route('email')}}">Email</a></li>
 
           @endguest
           <li><a class="nav-link scrollto" href="#about">About</a></li>

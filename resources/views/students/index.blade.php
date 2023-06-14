@@ -18,7 +18,7 @@
          <tr>
             <th>{{$student->id}}</th>
             <th>{{$student->name}}</th>
-            <th>{{$student->majoir}}</th>
+            <th>{{$student->major->name}}</th>
             <th>{{$student->uni_id}}</th>
             <th>{{$student->created_at}}</th>
             <th>

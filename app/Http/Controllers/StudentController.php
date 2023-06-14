@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Major;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -9,12 +10,18 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::paginate(5);
+        $students = Student::with('major')->paginate(5);
         return view('students.index',compact('students'));
     }
+    // public function studentsWithMajor($major)
+    // {
+    //     $students = Student::where('major',$major)->get();
+    //     return view('students.index',compact('students'));
+    // }
     public function create()
     {
-        return view('students.create');
+        $majors = Major::all();
+        return view('students.create',compact('majors'));
     }
     public function store(Request $request)
     {
@@ -27,7 +34,7 @@ class StudentController extends Controller
         ]);
         Student::create([
             "name"=>$request->name,
-            "major"=>$request->major,
+            "major_id"=>$request->major,
             "uni_id"=>$request->uni_id
         ]);
         return redirect()->route('students');
